@@ -5,11 +5,13 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { Genre } from "../hooks/useGenres";
 import createArr from "../utilities/create-arr";
+import { Platform } from "../hooks/usePlatforms";
 interface Props {
   selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
 }
-const GameGrid = ({ selectedGenre }: Props) => {
-  const { data, error, isLoading } = useGames(selectedGenre);
+const GameGrid = ({ selectedGenre, selectedPlatform }: Props) => {
+  const { data, error, isLoading } = useGames(selectedGenre, selectedPlatform);
 
   const skeleton = createArr(data.length); //创建骨架的个数和返回的数据长度一致
   // const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
