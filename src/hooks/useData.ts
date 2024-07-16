@@ -12,7 +12,7 @@ const useData = <T>(
   deps?: any[] // eslint-disable-line
 ) => {
   const [data, setData] = useState<T[]>([]);
-  const [errors, setErrors] = useState("");
+  const [error, setErrors] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   useEffect(
     () => {
@@ -36,6 +36,6 @@ const useData = <T>(
     },
     deps ? [...deps] : []
   );
-  return { data, errors, isLoading };
+  return { data, error, isLoading };
 };
 export default useData;

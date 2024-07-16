@@ -13,8 +13,8 @@ interface Props {
   selectedGenre: Genre | null;
 }
 const GenerList = ({ selectedGenre, onSelectedGenre }: Props) => {
-  const { data, errors, isLoading } = useGenres();
-  if (errors) return null;
+  const { data, error, isLoading } = useGenres();
+  if (error) return null;
   if (isLoading) return <Spinner />;
   return (
     <List>
@@ -32,6 +32,7 @@ const GenerList = ({ selectedGenre, onSelectedGenre }: Props) => {
               onClick={() => onSelectedGenre(genre)}
               variant="link"
               fontSize="large"
+              title={genre.name}
             >
               {sliceWord(genre.name, 10)}
             </Button>

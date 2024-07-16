@@ -4,17 +4,18 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { Genre } from "../hooks/useGenres";
+import createArr from "../utilities/create-arr";
 interface Props {
   selectedGenre: Genre | null;
 }
 const GameGrid = ({ selectedGenre }: Props) => {
-  const { data, errors, isLoading } = useGames(selectedGenre);
+  const { data, error, isLoading } = useGames(selectedGenre);
 
-  // const skeleton = createArr(data.length); //创建骨架的个数和返回的数据长度一致
-  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
+  const skeleton = createArr(data.length); //创建骨架的个数和返回的数据长度一致
+  // const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <>
-      {errors && <Text>{errors}</Text>}
+      {error && <Text>{error}</Text>}
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding={10}
