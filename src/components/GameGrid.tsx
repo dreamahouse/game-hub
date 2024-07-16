@@ -6,7 +6,9 @@ import GameCardContainer from "./GameCardContainer";
 
 const GameGrid = () => {
   const { data, errors, isLoading } = useGames();
-  const skeleton = [1, 2, 3, 4, 5, 6];
+
+  // const skeleton = createArr(data.length); //创建骨架的个数和返回的数据长度一致
+  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <>
       {errors && <Text>{errors}</Text>}
