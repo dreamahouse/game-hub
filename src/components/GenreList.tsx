@@ -7,29 +7,33 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import useGenres, { Genre } from "../hooks/useGenres";
+import sliceWord from "../utilities/slice-word";
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
-const GenerList = ({ onSelectedGenre }: Props) => {
+const GenerList = ({ selectedGenre, onSelectedGenre }: Props) => {
   const { data, errors, isLoading } = useGenres();
   if (errors) return null;
   if (isLoading) return <Spinner />;
   return (
     <List>
-      {data.map((gener) => (
-        <ListItem key={gener.id} paddingY="5px">
+      {data.map((genre) => (
+        <ListItem key={genre.id} paddingY="5px">
           <HStack>
             <Image
               boxSize="32px"
               borderRadius={8}
-              src={gener.image_background}
+              src={genre.image_background}
             />
             <Button
-              onClick={() => onSelectedGenre(gener)}
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              color={genre.id === selectedGenre?.id ? "#9AE6B4" : "white"}
+              onClick={() => onSelectedGenre(genre)}
               variant="link"
               fontSize="large"
             >
-              {gener.name}
+              {sliceWord(genre.name, 10)}
             </Button>
           </HStack>
         </ListItem>
