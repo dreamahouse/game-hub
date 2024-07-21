@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { AxiosRequestConfig, CanceledError } from "axios";
 
-interface GetResponse<T> {
+export interface GetResponse<T> {
   count: number;
+  next: string | null;
   results: T[];
 }
 const useData = <T>(
