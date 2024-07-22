@@ -10,9 +10,9 @@ import useGenres, { Genre } from "../hooks/useGenres";
 import sliceWord from "../utilities/slice-word";
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
 }
-const GenerList = ({ selectedGenre, onSelectedGenre }: Props) => {
+const GenerList = ({ selectedGenreId, onSelectedGenre }: Props) => {
   const { data, error, isLoading } = useGenres();
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -27,7 +27,7 @@ const GenerList = ({ selectedGenre, onSelectedGenre }: Props) => {
               src={genre.image_background}
             />
             <Button
-              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
               // color={genre.id === selectedGenre?.id ? "#9AE6B4" : "white"}
               onClick={() => onSelectedGenre(genre)}
               variant="link"
