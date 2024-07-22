@@ -3,6 +3,7 @@ import { GameQuery } from "../App";
 import APIClient from "../services/api-client";
 import { Platform } from "./usePlatforms";
 import { GetResponse } from "../services/api-client";
+import ms from "ms";
 
 export interface Game {
   id: number;
@@ -29,17 +30,7 @@ const useGames = (gameQuery: GameQuery) =>
     getNextPageParam: (lastPage, pages) => {
       return lastPage.next ? pages.length + 1 : undefined;
     },
+    staleTime: ms("24h"),
   });
-// useData<Game>(
-//   "/games",
-//   {
-//     params: {
-//       genres: gameQuery.genre?.id,
-//       platforms: gameQuery.platform?.id,
-//       ordering: gameQuery.sortOrder,
-//       search: gameQuery.searchText,
-//     },
-//   },
-//   [gameQuery]
-// );
+
 export default useGames;
