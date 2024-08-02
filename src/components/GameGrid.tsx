@@ -1,15 +1,14 @@
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Fragment } from "react/jsx-runtime";
-import { GameQuery } from "../App";
 import useGames from "../hooks/useGames";
+import useGameQueryStore from "../store";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
-interface Props {
-  gameQuery: GameQuery;
-}
-const GameGrid = ({ gameQuery }: Props) => {
+
+const GameGrid = () => {
+  const gameQuery = useGameQueryStore((s) => s.gameQuery);
   const { data, error, isLoading, fetchNextPage, hasNextPage } =
     useGames(gameQuery);
   // data的数据格式应为：{pages:[  {results: [ {id:1,...} , {id:2,...} ] } , {results: [ {id:1,...} , {id:2,...} ]}  ]}
