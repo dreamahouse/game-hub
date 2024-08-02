@@ -10,7 +10,7 @@ const ErrorPage = () => {
       <Heading>Oops</Heading>
       <Text>
         {isRouteErrorResponse(error)
-          ? "The page is does not exist"
+          ? "This page does not exist"
           : "Unexpected error occurred"}
       </Text>
     </>

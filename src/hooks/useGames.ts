@@ -8,6 +8,8 @@ import ms from "ms";
 export interface Game {
   id: number;
   name: string;
+  slug: string;
+  description_raw: string;
   background_image: string;
   platforms: { platform: Platform }[];
   metacritic: number;
