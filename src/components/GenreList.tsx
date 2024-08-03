@@ -11,7 +11,7 @@ import useGameQueryStore from "../store";
 import sliceWord from "../utilities/slice-word";
 
 const GenerList = () => {
-  const gameQuery = useGameQueryStore((s) => s.gameQuery);
+  const selectedGenreId = useGameQueryStore((s) => s.gameQuery.genreId);
   const setGenreId = useGameQueryStore((s) => s.setGenreId);
   const { data, error, isLoading } = useGenres();
   if (error) return null;
@@ -27,7 +27,7 @@ const GenerList = () => {
               src={genre.image_background}
             />
             <Button
-              fontWeight={genre.id === gameQuery.genreId ? "bold" : "normal"}
+              fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
               // color={genre.id === selectedGenre?.id ? "#9AE6B4" : "white"}
               onClick={() => setGenreId(genre.id)}
               variant="link"
