@@ -12,7 +12,7 @@ const GameDetailePage = () => {
   if (isLoading) return <Spinner />;
   if (error || !game) throw error;
   return (
-    <SimpleGrid columns={{ base: 1, lg: 2 }} gap={2}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
       <GridItem>
         <Heading>{game.name}</Heading>
         <ExpandableText>{game.description_raw}</ExpandableText>
