@@ -19,8 +19,10 @@ const useGames = (gameQuery: GameQuery) =>
           page: pageParam,
         },
       }),
-    getNextPageParam: (lastPage, pages) => {
-      return lastPage.next ? pages.length + 1 : undefined;
+    getNextPageParam: (lastPage, allPages) => {
+      //lastPage:{next:"...",results:[page...]}每一页的数据
+      //allPages是所有页面的数据：allPages:[page:[],page:[]]
+      return lastPage.next ? allPages.length + 1 : undefined;
     },
     staleTime: ms("24h"),
   });

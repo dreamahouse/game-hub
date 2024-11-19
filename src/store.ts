@@ -1,5 +1,5 @@
 import { create } from "zustand";
-
+import { mountStoreDevtool } from "simple-zustand-devtools";
 export interface GameQuery {
   genreId?: number;
   platformId?: number;
@@ -27,4 +27,7 @@ const useGameQueryStore = create<GameQueryStore>((set) => ({
   setSortOrder: (sortOrder) =>
     set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder } })),
 }));
+if (process.env.NODE_ENV === "development") {
+  mountStoreDevtool("GameQueryStore", useGameQueryStore);
+}
 export default useGameQueryStore;
